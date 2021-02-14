@@ -16,14 +16,12 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 const getImages = async(query) => {
   toggleSpinner(true);
   const url = `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`;
-  try {
   const res = await fetch(url);
   const data = await res.json();
   showImages(data.hits);
   toggleSpinner(false);
-  }
-  catch(error){
-      alert("Oops!!Something went wrong");
+  if(data.total == 0){
+    alert("Opps !! Somethings Wrong Please try again");
   }
 }
 // show images 
